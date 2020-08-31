@@ -20,3 +20,14 @@ SQLite
 
 
 ### 5. Preview
+![image](https://user-images.githubusercontent.com/61833149/91718561-942d2b80-ebce-11ea-916d-769be1390216.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91718592-a0b18400-ebce-11ea-915b-cfb8e957eabb.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91718630-b8890800-ebce-11ea-9275-56a253d5907a.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91718617-b0c96380-ebce-11ea-8652-c48f81160299.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91718645-bf177f80-ebce-11ea-81cd-5afb600d7cff.png)
+
+![image](https://user-images.githubusercontent.com/61833149/91718663-c8085100-ebce-11ea-9ef6-10f7e38e0181.png)
