@@ -12,7 +12,7 @@
 ### 3. server
 framework :django
 
-language: javascript, python
+language: python
 
 
 ### 4. Database
