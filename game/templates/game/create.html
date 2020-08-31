@@ -1,0 +1,61 @@
+{% extends 'game/mainpage.html' %}
+{% block head %}
+<style>
+
+    form {
+        width:80%;
+        margin:0 auto;
+        margin-top:100px;
+    }
+    
+</style>
+{% endblock %}
+
+{% block nav %}
+<li><a href="#">내 퀴즈 보기</a></li>
+<li><a href="/accounts/logout">로그아웃</a></li>
+{% endblock %}
+
+{% block content %}
+<div>
+    <form action="{% url 'game:create' %}" method="POST">{% csrf_token %}
+        <div>{{ user.first_name }} 님 문제만들어주세용</div> <br>
+        <div>
+            Title
+            <input type="text" name="quiz_title" class="form-control" placeholder='제목을 입력하세요'>
+        </div>
+        {% for quiz in quizs %}
+        <hr>{{user.quiz_title}}
+            <div class='title'> Q{{quiz.id}}. {{quiz.title}}</div> <br>
+            <input type="radio" value="1" name="{{quiz.id}}">
+            <label for="1">{{quiz.opt1}}</label>
+            <input type="radio" value="2" name="{{quiz.id}}">
+            <label for="2">{{quiz.opt2}}</label>
+            <input type="radio" value="3" name="{{quiz.id}}">
+            <label for="3">{{quiz.opt3}}</label>
+            <input type="radio" value="4" name="{{quiz.id}}">
+            <label for="4">{{quiz.opt4}}</label>
+            <input type="radio" value="5" name="{{quiz.id}}">
+            <label for="5">{{quiz.opt5}}</label>
+        {% endfor %}
+        <br>
+        <hr>
+
+        <input type="radio" value="{{ user.first_name }}" name="user_name">
+        <label for="{{ user.first_name }}">다 되셨나요?</label>
+        <br>
+        <hr>
+        <br>
+        <input type="submit" class="btn btn-lg btn-default" value="퀴즈만들기" />
+    </form>
+</div>
+{% endblock content %}
+
+{% block footer %}
+                <div class="mastfoot">
+                    <div class="inner">
+                        <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a
+                                href="https://twitter.com/mdo">@mdo</a>.</p>
+                    </div>
+                </div>
+{% endblock footer %}

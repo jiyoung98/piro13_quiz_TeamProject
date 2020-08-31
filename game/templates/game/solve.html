@@ -1,0 +1,49 @@
+{% extends 'game/mainpage.html' %}
+{% block head %}
+<style>
+
+    form {
+        width:80%;
+        margin:0 auto;
+        margin-top:100px;
+    }
+    
+</style>
+{% endblock %}
+
+{% block nav %}
+<li><a href="#">내 퀴즈 보기</a></li>
+<li><a href="/accounts/logout">로그아웃</a></li>
+{% endblock %}
+
+{% block content %}
+<div>
+    <form action="{% url 'game:solve' pk=user.pk %}" method="POST">
+        {% csrf_token %}
+        <div><h1 class='title'>{{user.quiz_title}}</h1></div>
+        <div>출제자: {{user.name}}</div>
+        <div class="form-group"><br>
+        <label for="formGroupExampleInput">당신의 이름을 입력하세요!</label>
+        <input type="text" name="user_name" class="form-control" placeholder='이름을 입력하세요'>
+        {% for quiz in quizs %}
+        <hr>
+            <div>Q{{quiz.id}}. {{quiz.title}}</div> <br>
+            <input type="radio" value="1" name="{{quiz.id}}">
+            <label for="1">{{quiz.opt1}}</label>
+            <input type="radio" value="2" name="{{quiz.id}}">
+            <label for="2">{{quiz.opt2}}</label>
+            <input type="radio" value="3" name="{{quiz.id}}">
+            <label for="3">{{quiz.opt3}}</label>
+            <input type="radio" value="4" name="{{quiz.id}}">
+            <label for="4">{{quiz.opt4}}</label>
+            <input type="radio" value="5" name="{{quiz.id}}">
+            <label for="5">{{quiz.opt5}}</label>
+        {% endfor %}
+        <br>
+        <hr>
+        <br>
+        <input type="submit" class="btn btn-lg btn-default" value="퀴즈제출하기" />
+    </form>
+</div>
+{% endblock content %}
+

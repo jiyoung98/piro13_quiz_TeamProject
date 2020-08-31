@@ -1,0 +1,41 @@
+{% extends 'game/mainpage.html' %}
+{% block head %}
+<style>
+    ul {
+        list-style:none;
+        margin:0; padding:0;
+        display:flex;
+        justify-content: space-between;
+    }
+    li {
+        margin:auto 0;
+    }
+    {% comment %} .cover-container {
+        width:1000px;
+        margin: 0 auto;
+    } {% endcomment %}
+</style>
+{% endblock head %}
+
+{% block nav %}
+<li><a href="#">내 퀴즈 보기</a></li>
+<li><a href="/accounts/logout">로그아웃</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <h1>퀴즈목록</h1>
+    <p class="comment">현재 플레이어의 등록한 퀴즈를 보여주는 페이지</p> <br> <br>
+    <p>현재 사용자: {{ user.first_name }}</p>
+    <hr>
+    {% for user in users %}
+        <ul>
+            <li>제목: {{user.quiz_title}}</li>
+            <li><a href="{% url 'game:solve' pk=user.pk %}">출제자: {{user.name}}</a></li>
+            <li><a href="{% url 'game:solve' pk=user.pk %}" class="btn btn-lg btn-default">퀴즈 풀기</a></li>
+            <li><a href="{% url 'game:ranking' pk=user.pk %}" class="btn btn-lg btn-default">랭킹확인하기</a></li>
+        </ul> <br>
+
+    {% endfor %}
+    </div>
+{% endblock %}

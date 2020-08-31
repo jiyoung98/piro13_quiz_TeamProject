@@ -1,0 +1,91 @@
+{% load static %}
+<html lang="UTF-8">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Cover Template for Bootstrap</title>
+
+    <!-- Custom styles for this template -->
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link href="{% static 'game/cover.css' %}" rel="stylesheet">
+    {% block head %}
+    {% endblock head %}
+</head>
+
+<body>
+{% load socialaccount %}
+{% providers_media_js %}
+
+    <div class="site-wrapper">
+
+        <div class="site-wrapper-inner">
+            <div class="cover-container">
+
+                <div class="masthead clearfix">
+                    <div class="inner">
+                        <h3 class="masthead-brand"><a href="{% url 'game:quiz_home' %}">PIROGRAM QUIZ</a></h3>
+                        <nav>
+                            <ul class="nav masthead-nav">
+                                {% block nav %}
+                                    {% if user.is_authenticated %}
+                                    <li><a href="#">내 퀴즈 보기</a></li>
+                                    <li><a href="/accounts/logout">로그아웃</a></li>
+                                    {% else %}
+                                    <li><a href="{% provider_login_url 'google' %}">구글 로그인</a></li>
+                                    {% endif %}
+                                {% endblock %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                {% block content %}
+                <div class="inner cover">
+                    <h1 class="cover-heading">나를 가장 잘 아는 피로그래머는 누구일까요?!</h1> <br> <br>
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'game:create' %}" class="btn btn-lg btn-default">퀴즈내러가기</a> <br> <br>
+                        <a href="{% url 'game:solve_list' %}" class="btn btn-lg btn-default">퀴즈맞추러가기</a>
+                        <br> <br>
+                        {{ user.first_name }} 님이 로그인 중
+                        <div>이 이름을 잘 기억해주세요! 문제를 풀고 랭킹을 매길때 필요합니다ㅠ_ㅠ</div>
+                        {% else %}
+                        <a href="{% provider_login_url 'google' %}" class="btn btn-lg btn-default">퀴즈맞추러가기</a>
+                        {% endif %}
+                    </p>
+                </div>
+                {% endblock content %}
+                {% block footer %}
+                <div class="mastfoot">
+                    <div class="inner">
+                        <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a
+                                href="https://twitter.com/mdo">@mdo</a>.</p>
+                    </div>
+                </div>
+                {% endblock footer %}
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!— IE10 viewport hack for Surface/desktop Windows 8 bug —>
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+</body>
+
+</html>

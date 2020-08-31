@@ -1,0 +1,43 @@
+{% extends 'game/mainpage.html' %}
+
+{% block head %}
+<style>
+    .container {
+        padding : 20px;
+        border : 1px solid black;
+    }
+    .ch_item {
+        margin:10px 0px;
+    }
+    .ch_item span {
+        color :yellow;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}
+
+{% block nav %}
+<li><a href="#">내 퀴즈 보기</a></li>
+<li><a href="/accounts/logout">로그아웃</a></li>
+{% endblock %}
+
+{% block content %}
+<h1>{{user.name}}의 문제</h1>
+<br>
+<div class="container">
+    <div class='ch_item'>10개 맞힌 사람! <span>{{challengers_10}}</span></div>
+    <div class='ch_item'>9개 맞힌 사람! <span>{{challengers_9}}</span></div>
+    <div class='ch_item'>8개 맞힌 사람! <span>{{challengers_8}}</span></div>
+    <div class='ch_item'>7개 맞힌 사람! <span>{{challengers_7}}</span></div>
+    <div class='ch_item'>6개 맞힌 사람! <span>{{challengers_6}}</span></div>
+    <div class='ch_item'>5개 맞힌 사람! <span>{{challengers_5}}</span></div>
+    <div class='ch_item'>4개 맞힌 사람! <span>{{challengers_4}}</span></div>
+    <div class='ch_item'>3개 맞힌 사람! <span>{{challengers_3}}</span></div>
+    <div class='ch_item'>2개 맞힌 사람! <span>{{challengers_2}}</span></div>
+    <div class='ch_item'>1개 맞힌 사람! <span>{{challengers_1}}</span></div>
+    <div class='ch_item'>0개 맞힌 사람! <span>{{challengers_0}}</span></div>
+</div>
+<br>
+<a href="{% url 'game:solve_list' %}" class="btn btn-lg btn-default">문제 목록</a>
+
+{% endblock content %}
